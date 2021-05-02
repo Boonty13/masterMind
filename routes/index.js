@@ -28,20 +28,47 @@ router.post('/validate-input', function (req, res, next) {
     errorMsg = 'le code ne contient que 4 couleurs...'
   } else {
 
-    inputCode.map((color)=>{
+    inputCode.map((color) => {
       let index = validColors.indexOf(color)
-      if(index < 0){
+      if (index < 0) {
         errorMsg = 'Certaines couleurs ne sont pas valides'
       }
     })
   }
 
-  if(errorMsg === null ){
+  if (errorMsg === null) {
     result = true
   }
 
   res.json({ result, errorMsg, inputCode })
 })
 
+
+// FUNCTION : to evaluate the code
+router.post('/evaluate-input', function (req, res, next) {
+  let inputCode = req.body.inputCode
+  let secretCode = req.body.secretCode
+  let wellPlaced = 0
+  let misplaced = 0
+  let result = false
+
+  for (let index = 0; index < inputCode.length; index++) {
+    if (inputCode[index] === secretCode[index]) {
+      wellPlaced++
+    } else {
+      let indMisplaced = secretCode.indexOf(inputCode[index])
+      if (indMisplaced >= 0) {
+        secretCode[indMisplaced] = 'taken'
+        misplaced ++
+      }
+    }
+  }
+
+  if (wellPlaced + misplaced <= 4) {
+    result = true
+  }
+
+  res.json({ result, inputCode, evaluation: [wellPlaced, misplaced] })
+})
 
 module.exports = router;
