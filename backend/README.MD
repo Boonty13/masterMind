@@ -1,3 +1,3 @@
-## SETUP PROJECT
-npm install
+# SETUP BACK END
+npm install\
 npm start
