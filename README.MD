@@ -8,6 +8,6 @@
 
 ## Lancer les tests
 
-1 - Se placer à la racine du back end
-2 - Installer les modules jest et supertest
+1 - Se placer à la racine du back end\
+2 - Installer les modules jest et supertest\
 3 - Lancer les tests avec 'jest'
