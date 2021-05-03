@@ -2,7 +2,6 @@ Lien vers le kata pris pour base :\
 https://codingdojo.org/kata/Mastermind/
 
 \
-\
 
 Résultat disponible à l'adresse https://nameless-eyrie-71647.herokuapp.com
 
