@@ -24,12 +24,12 @@ describe('InputLength', () => {
   test('notEnoughColorsInput', async (done) => {
     await
       request(app).post('/validate-input')
-        .send({ 'inputCode': ['bleu', 'rouge'] })
+        .send({ 'inputCode': ['blue', 'red'] })
         .expect(200)
         .expect({
           result: false,
           errorMsg: 'le code contient 4 couleurs...',
-          inputCode: ['bleu', 'rouge']
+          inputCode: ['blue', 'red']
         })
 
     done()
@@ -40,12 +40,12 @@ describe('InputLength', () => {
   test('toMuchColorsInput', async (done) => {
     await
       request(app).post('/validate-input')
-        .send({ 'inputCode': ['bleu', 'rouge', 'bleu', 'rouge', 'bleu', 'rouge'] })
+        .send({ 'inputCode': ['blue', 'red', 'blue', 'red', 'blue', 'red'] })
         .expect(200)
         .expect({
           result: false,
           errorMsg: 'le code ne contient que 4 couleurs...',
-          inputCode: ['bleu', 'rouge', 'bleu', 'rouge', 'bleu', 'rouge']
+          inputCode: ['blue', 'red', 'blue', 'red', 'blue', 'red']
         })
 
     done()
@@ -57,12 +57,12 @@ describe('InputLength', () => {
 test('colorInvalid', async (done) => {
   await
     request(app).post('/validate-input')
-      .send({ 'inputCode': ['rose', 'jaune', 'bleu', 'bleu'] })
+      .send({ 'inputCode': ['rose', 'yellow', 'blue', 'blue'] })
       .expect(200)
       .expect({
         result: false,
         errorMsg: 'Certaines couleurs ne sont pas valides',
-        inputCode: ['rose', 'jaune', 'bleu', 'bleu']
+        inputCode: ['rose', 'yellow', 'blue', 'blue']
       })
   done()
 })
@@ -70,12 +70,12 @@ test('colorInvalid', async (done) => {
 test('inputValid', async (done) => {
   await
     request(app).post('/validate-input')
-      .send({ 'inputCode': ['rouge', 'jaune', 'bleu', 'bleu'] })
+      .send({ 'inputCode': ['red', 'yellow', 'blue', 'blue'] })
       .expect(200)
       .expect({
         result: true,
         errorMsg: null,
-        inputCode: ['rouge', 'jaune', 'bleu', 'bleu']
+        inputCode: ['red', 'yellow', 'blue', 'blue']
       })
   done()
 })

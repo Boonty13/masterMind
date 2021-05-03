@@ -18,7 +18,7 @@ router.post('/validate-input', function (req, res, next) {
   let errorMsg = null
   let result = false
 
-  const validColors = ['bleu', 'rouge', 'vert', 'jaune', 'violet', 'orange']
+  const validColors = ['blue', 'red', 'green', 'yellow', 'violet', 'orange']
 
   if (inputCode.length === 0) {
     errorMsg = 'aucune données entrées'
@@ -46,21 +46,27 @@ router.post('/validate-input', function (req, res, next) {
 
 // FUNCTION : to evaluate the code
 router.post('/evaluate-input', function (req, res, next) {
-  let inputCode = req.body.inputCode
+  const inputCode = req.body.inputCode
   let secretCode = req.body.secretCode
   let wellPlaced = 0
   let misplaced = 0
   let result = false
 
-  for (let index = 0; index < inputCode.length; index++) {
-    if (inputCode[index] === secretCode[index]) {
+  let propositionCode = [...inputCode] 
+
+  for (let index = 0; index < propositionCode.length; index++) {
+    if (propositionCode[index] === secretCode[index]) {
       wellPlaced++
-    } else {
-      let indMisplaced = secretCode.indexOf(inputCode[index])
-      if (indMisplaced >= 0) {
-        secretCode[indMisplaced] = 'taken'
-        misplaced ++
-      }
+      secretCode[index] = 'taken'
+      propositionCode[index] = 'counted'
+    }
+  }
+
+  for (let index = 0; index < propositionCode.length; index++) {
+    let indMisplaced = secretCode.indexOf(propositionCode[index])
+    if (indMisplaced >= 0) {
+      secretCode[indMisplaced] = 'taken'
+      misplaced++
     }
   }
 

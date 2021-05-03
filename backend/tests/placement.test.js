@@ -10,14 +10,14 @@ describe('Well placed colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'bleu', 'bleu', 'bleu'],
-          secretCode: ['rouge', 'rouge', 'rouge', 'rouge']
+          inputCode: ['blue', 'blue', 'blue', 'blue'],
+          secretCode: ['red', 'red', 'red', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [0, 0],
-          inputCode: ['bleu', 'bleu', 'bleu', 'bleu']
+          inputCode: ['blue', 'blue', 'blue', 'blue']
         })
 
     done()
@@ -29,14 +29,14 @@ describe('Well placed colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'rouge', 'bleu', 'bleu'],
-          secretCode: ['rouge', 'rouge', 'rouge', 'rouge']
+          inputCode: ['blue', 'red', 'blue', 'blue'],
+          secretCode: ['red', 'red', 'red', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [1, 0],
-          inputCode: ['bleu', 'rouge', 'bleu', 'bleu']
+          inputCode: ['blue', 'red', 'blue', 'blue']
         })
 
     done()
@@ -48,14 +48,14 @@ describe('Well placed colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'rouge', 'rouge', 'bleu'],
-          secretCode: ['rouge', 'rouge', 'rouge', 'rouge']
+          inputCode: ['blue', 'red', 'red', 'blue'],
+          secretCode: ['red', 'red', 'red', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [2, 0],
-          inputCode: ['bleu', 'rouge', 'rouge', 'bleu']
+          inputCode: ['blue', 'red', 'red', 'blue']
         })
 
     done()
@@ -67,14 +67,14 @@ describe('Well placed colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'rouge', 'rouge', 'vert'],
-          secretCode: ['rouge', 'rouge', 'rouge', 'vert']
+          inputCode: ['blue', 'red', 'red', 'green'],
+          secretCode: ['red', 'red', 'red', 'green']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [3, 0],
-          inputCode: ['bleu', 'rouge', 'rouge', 'vert']
+          inputCode: ['blue', 'red', 'red', 'green']
         })
 
     done()
@@ -86,14 +86,14 @@ describe('Well placed colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['vert', 'rouge', 'bleu', 'bleu'],
-          secretCode: ['vert', 'rouge', 'bleu', 'bleu']
+          inputCode: ['green', 'red', 'blue', 'blue'],
+          secretCode: ['green', 'red', 'blue', 'blue']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [4, 0],
-          inputCode: ['vert', 'rouge', 'bleu', 'bleu']
+          inputCode: ['green', 'red', 'blue', 'blue']
         })
 
     done()
@@ -113,14 +113,14 @@ describe('Misplaced colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'bleu', 'bleu', 'bleu'],
-          secretCode: ['rouge', 'rouge', 'rouge', 'rouge']
+          inputCode: ['blue', 'blue', 'blue', 'blue'],
+          secretCode: ['red', 'red', 'red', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [0, 0],
-          inputCode: ['bleu', 'bleu', 'bleu', 'bleu']
+          inputCode: ['blue', 'blue', 'blue', 'blue']
         })
 
     done()
@@ -132,14 +132,14 @@ describe('Misplaced colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'rouge', 'bleu', 'bleu'],
-          secretCode: ['rouge', 'vert', 'rouge', 'rouge']
+          inputCode: ['blue', 'red', 'blue', 'blue'],
+          secretCode: ['red', 'green', 'red', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [0, 1],
-          inputCode: ['bleu', 'rouge', 'bleu', 'bleu']
+          inputCode: ['blue', 'red', 'blue', 'blue']
         })
 
     done()
@@ -151,14 +151,14 @@ describe('Misplaced colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'rouge', 'vert', 'bleu'],
-          secretCode: ['rouge', 'vert', 'rouge', 'rouge']
+          inputCode: ['blue', 'red', 'green', 'blue'],
+          secretCode: ['red', 'green', 'red', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [0, 2],
-          inputCode: ['bleu', 'rouge', 'vert', 'bleu']
+          inputCode: ['blue', 'red', 'green', 'blue']
         })
 
     done()
@@ -170,14 +170,14 @@ describe('Misplaced colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'rouge', 'vert', 'orange'],
-          secretCode: ['rouge', 'vert', 'orange', 'violet']
+          inputCode: ['blue', 'red', 'green', 'orange'],
+          secretCode: ['red', 'green', 'orange', 'violet']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [0, 3],
-          inputCode: ['bleu', 'rouge', 'vert', 'orange']
+          inputCode: ['blue', 'red', 'green', 'orange']
         })
 
     done()
@@ -189,14 +189,14 @@ describe('Misplaced colors', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['violet', 'rouge', 'vert', 'orange'],
-          secretCode: ['rouge', 'vert', 'orange', 'violet']
+          inputCode: ['violet', 'red', 'green', 'orange'],
+          secretCode: ['red', 'green', 'orange', 'violet']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [0, 4],
-          inputCode: ['violet', 'rouge', 'vert', 'orange']
+          inputCode: ['violet', 'red', 'green', 'orange']
         })
 
     done()
@@ -216,14 +216,14 @@ describe('Mix well placed and misplaced', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['bleu', 'bleu', 'bleu', 'bleu'],
-          secretCode: ['vert', 'rouge', 'violet', 'rouge']
+          inputCode: ['blue', 'blue', 'blue', 'blue'],
+          secretCode: ['green', 'red', 'violet', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [0, 0],
-          inputCode: ['bleu', 'bleu', 'bleu', 'bleu']
+          inputCode: ['blue', 'blue', 'blue', 'blue']
         })
 
     done()
@@ -235,14 +235,14 @@ describe('Mix well placed and misplaced', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['vert', 'violet', 'bleu', 'bleu'],
-          secretCode: ['vert', 'rouge', 'violet', 'rouge']
+          inputCode: ['green', 'violet', 'blue', 'blue'],
+          secretCode: ['green', 'red', 'violet', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [1, 1],
-          inputCode: ['vert', 'violet', 'bleu', 'bleu']
+          inputCode: ['green', 'violet', 'blue', 'blue']
         })
 
     done()
@@ -254,14 +254,14 @@ describe('Mix well placed and misplaced', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['vert', 'violet', 'rouge', 'bleu'],
-          secretCode: ['vert', 'rouge', 'violet', 'rouge']
+          inputCode: ['green', 'violet', 'red', 'blue'],
+          secretCode: ['green', 'red', 'violet', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [1, 2],
-          inputCode: ['vert', 'violet', 'rouge', 'bleu']
+          inputCode: ['green', 'violet', 'red', 'blue']
         })
 
     done()
@@ -273,14 +273,14 @@ describe('Mix well placed and misplaced', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['vert', 'violet', 'bleu', 'rouge'],
-          secretCode: ['vert', 'rouge', 'violet', 'rouge']
+          inputCode: ['green', 'violet', 'blue', 'red'],
+          secretCode: ['green', 'red', 'violet', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [2, 1],
-          inputCode: ['vert', 'violet', 'bleu', 'rouge']
+          inputCode: ['green', 'violet', 'blue', 'red']
         })
 
     done()
@@ -292,14 +292,14 @@ describe('Mix well placed and misplaced', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['vert', 'violet', 'rouge', 'rouge'],
-          secretCode: ['vert', 'rouge', 'violet', 'rouge']
+          inputCode: ['green', 'violet', 'red', 'red'],
+          secretCode: ['green', 'red', 'violet', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [2, 2],
-          inputCode: ['vert', 'violet', 'rouge', 'rouge']
+          inputCode: ['green', 'violet', 'red', 'red']
         })
 
     done()
@@ -311,14 +311,33 @@ describe('Mix well placed and misplaced', () => {
     await
       request(app).post('/evaluate-input')
         .send({
-          inputCode: ['violet', 'vert', 'rouge', 'rouge'],
-          secretCode: ['vert', 'rouge', 'violet', 'rouge']
+          inputCode: ['violet', 'green', 'red', 'red'],
+          secretCode: ['green', 'red', 'violet', 'red']
         })
         .expect(200)
         .expect({
           result: true,
           evaluation: [1, 3],
-          inputCode: ['violet', 'vert', 'rouge', 'rouge']
+          inputCode: ['violet', 'green', 'red', 'red']
+        })
+
+    done()
+  })
+
+  // Septieme test : si deux couleurs identiques sont bien placées mais que trois pions de cette couleurs sont dans la proposition,
+  // ça retourne [2,0]
+  test('twoWellThreeColors', async (done) => {
+    await
+      request(app).post('/evaluate-input')
+        .send({
+          inputCode: ['blue', 'green', 'blue', 'blue'],
+          secretCode: ['blue', 'red', 'blue', 'orange']
+        })
+        .expect(200)
+        .expect({
+          result: true,
+          evaluation: [2, 0],
+          inputCode: ['blue', 'green', 'blue', 'blue']
         })
 
     done()
