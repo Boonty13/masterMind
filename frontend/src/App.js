@@ -1,6 +1,5 @@
-import './App.css';
 import React, { useEffect, useState } from 'react';
-import { Input, Button, Badge } from 'reactstrap';
+import { Button, Badge, UncontrolledTooltip } from 'reactstrap';
 
 function App() {
 
@@ -36,6 +35,7 @@ function App() {
     if (answer.result) {
       setHistoricProp([...historicProp, answer.inputCode])
       evaluate()
+      setInputCode([])
     }
     setErrorMsg(answer.errorMsg)
   }
@@ -114,7 +114,29 @@ function App() {
   // ------------------------ //
 
   return (
-    <div className="App">
+    <div style={{
+      textAlign: 'center',
+      backgroundColor: '#282c34',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '3vmin',
+      color: 'white'
+    }}>
+
+      <div style={{ display: 'flex', width: '90%', justifyContent: 'left' }}>
+        <Button id="tooltip">Aide</Button>
+        <UncontrolledTooltip placement="top" target="tooltip" trigger="click" style={{ color: 'white' }}>
+          <p>- Le code secret contient 4 couleurs</p>
+          <p>- Dans l'évaluation, 'BP' = 'Bien placé'</p>
+          <p>- Dans l'évaluation, 'MP' = 'Mal placé'</p>
+          <p>- Vous avez 10 coups pour réussir</p>
+        </UncontrolledTooltip>
+      </div>
+
+
       {
         win ?
           <p>BRAVO !</p>
@@ -141,11 +163,13 @@ function App() {
         <Badge style={{ backgroundColor: 'green', borderRadius: '50%', margin: '5px', width: '70px' }} onClick={() => { addColor('green') }}></Badge>
       </div>
 
-      {historicProp.length < 10 && !win ?
-        <Button color='info' onClick={() => validateInput()}>VALIDER</Button>
-        :
-        <Button color='info' onClick={() => resetGame()}>RECOMMENCER</Button>
+      {
+        historicProp.length < 10 && !win ?
+          <Button color='info' onClick={() => validateInput()}>VALIDER</Button>
+          :
+          <Button color='info' onClick={() => resetGame()}>RECOMMENCER</Button>
       }
+
       <div style={{ display: 'flex', flexDirection: 'column-reverse' }}>
         {historic}
       </div>
